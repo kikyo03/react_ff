@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
+  console.log("Rendering SignUp component"); // Log to ensure it's rendered
+
   const [formData, setFormData] = useState({
     fname: "",
     lname: "",
@@ -10,6 +12,7 @@ const SignUp = () => {
     pass: "",
     role: "",
   });
+
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
@@ -28,6 +31,8 @@ const SignUp = () => {
       return;
     }
 
+    console.log("Form data submitted:", formData); // Log form data
+
     // Send data to PHP backend
     fetch("http://localhost/react-db/signup.php", {  // Change this to your actual PHP path
       method: "POST",
@@ -38,6 +43,7 @@ const SignUp = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log("Response from server:", data); // Log response from server
         if (data.success) {
           setSuccess(data.message); // Show success message
           setError(""); // Clear any previous error message
@@ -47,6 +53,7 @@ const SignUp = () => {
         }
       })
       .catch((error) => {
+        console.error("Error occurred:", error); // Log error
         setError("An error occurred. Please try again.");
       });
   };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";  // Import Link from react-router-dom
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -64,9 +65,11 @@ const Login = () => {
         <button type="submit" className="btn btn-primary">
           Login
         </button>
-        <a href="/signup" className="link-secondary ms-3">
-          Sign Up
-        </a>
+
+        <div className="mt-3">
+          {/* Use Link component for navigation */}
+          <p>Don't have an account? <Link to="/signup" className="link-secondary ms-3">Sign Up</Link></p>
+        </div>
       </form>
     </div>
   );
